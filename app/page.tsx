@@ -1,12 +1,13 @@
 import { Navbar } from "@/app/ui/Navbar";
 import Image from "next/image";
+import Link from "next/link";
 
 //CECI EST LA FONCTION PRINCIPALE DU PROJET, C'EST AVEC ELLE QU'ON PEUT TOUT AFFICHER
 function App() {
   return <>
     <Navbar/>
     <main>
-      <h1 className="text-2xl p-2">Dashboard</h1>
+      <Link href={'/dashboard'} className="text-2xl p-2">Dashboard</Link>
     </main>
     
   </>
