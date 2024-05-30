@@ -8,7 +8,7 @@ datasource db {
 }
 
 model notes {
-  id           Int      @id @default(autoincrement())
+  id           String   @id @default(cuid())
   note_title   String   @db.VarChar(255)
   note_content String?
   created_at   DateTime @default(now()) @db.Timestamp(6)
@@ -19,7 +19,7 @@ model notes {
 }
 
 model user_preferences {
-  id          String  @id @default(uuid())
+  id          String  @id @default(cuid())
   color_mode  Boolean
   color_theme String  @db.VarChar(54)
   user        User    @relation(fields: [userId], references: [id])
