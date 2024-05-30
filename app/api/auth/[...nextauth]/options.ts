@@ -1,12 +1,9 @@
-import { NextApiHandler } from 'next';
-import NextAuth from 'next-auth';
+// app/api/auth/[...nextauth]/options.ts
+import NextAuth, { NextAuthOptions } from 'next-auth';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import type { NextAuthOptions } from 'next-auth';
 import GitHubProvider from 'next-auth/providers/github';
-import prisma from '../../../../lib/prisma';
 import CredentialsProvider from 'next-auth/providers/credentials';
-const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);
-//export default authHandler;
+import prisma from '../../../../lib/prisma';
 
 const options: NextAuthOptions = {
     providers: [
@@ -17,36 +14,30 @@ const options: NextAuthOptions = {
         CredentialsProvider({
             name: "Credentials",
             credentials: {
-                username: {
-                    label: "Username:",
-                    type: "text",
-                    placeholder: "Username001",
-                },
-                password: {
-                    label: "Password:",
-                    type: "password",
-                    placeholder: "null"
-                }
+                userID: { label: "Username:", type: "text" },
+                password: { label: "Password:", type: "password" }
             },
             async authorize(credentials) {
-                //const user = {id:"42",name:"Dave",password:"test123"};
-                const user = prisma.account.findUnique({
-                    where: {
-                        userId: "Test"
-                    },
-                })
-                if (credentials?.username === user.name && credentials?.password === user.password) {
-                    return user
+                if (!credentials) return null;
+
+                const user = await prisma.user.findUnique({
+                    where: { id: credentials.userID }
+                });
+
+                if (user) {
+                    return user;
                 } else {
-                    return null
+                    return null;
                 }
             }
         })
     ],
     adapter: PrismaAdapter(prisma),
     secret: process.env.SECRET,
+    session: {
+        strategy: "jwt",
+    },
 };
-export default {
-    options,
-    authHandler,
-}
+
+export { options };
+export default NextAuth(options);

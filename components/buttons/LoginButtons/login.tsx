@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { signOut, useSession } from 'next-auth/react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 interface BTNStat {
     routerPathName: string;
 }
@@ -23,9 +23,7 @@ const ButtonStatus = ({ routerPathName }: BTNStat) => {
     }
     if (status === 'unauthenticated' || session === null) {
         button = (
-            <a className="font-black p-8 text-xl drop-shadow-md" data-active={isActive('/')}>
-                Log In
-            </a>)
+            <button onClick={() => signIn('github')} className="font-black p-8 text-xl drop-shadow-md">Sign in with GitHub</button>)
     }
     return <>
         <div className={`rounded-md bg-emerald-700 text-slate-100 mt-6 md:mt-8 w-full h-12 flex items-center justify-center`}>
