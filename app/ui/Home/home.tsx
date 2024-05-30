@@ -23,7 +23,9 @@ export default function HomeScreen({ session, status }: HomeScreenProps) {
                 <h2 className="font-black text-slate-800">Log In</h2>
                 {(status === "authenticated" && session != null) ? (
 
-                    <Link href="/dashboard" className={`${averiaSerif.className} text-2xl drop-shadow-md font-black p-2 bg-slate-800 text-slate-50 rounded-md`}>Welcome, {session.user.name}! Go to Dashboard</Link>
+                    <Link href="/dashboard" className={`${averiaSerif.className} text-2xl drop-shadow-md font-black p-2 bg-slate-800 text-slate-50 rounded-md`}>
+                        Welcome, {session.user.name ? (session.user.name) : ("Visitor")}! Go to Dashboard
+                    </Link>
                 ) : (
                     <>
                         <p>Please log in to access your notes.</p>
