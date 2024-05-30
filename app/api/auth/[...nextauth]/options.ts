@@ -30,13 +30,11 @@ const options: NextAuthOptions = {
             },
             async authorize(credentials) {
                 //const user = {id:"42",name:"Dave",password:"test123"};
-                const user = {
-                    name: prisma.account.findUnique({
-                        where: {
-                            userId:
-                        }
-                    })
-                }
+                const user = prisma.account.findUnique({
+                    where: {
+                        userId: "Test"
+                    },
+                })
                 if (credentials?.username === user.name && credentials?.password === user.password) {
                     return user
                 } else {
