@@ -46,7 +46,7 @@ const options: NextAuthOptions = {
     adapter: PrismaAdapter(prisma),
     secret: process.env.SECRET,
 };
-export {
+export default {
     options,
     authHandler,
 }
