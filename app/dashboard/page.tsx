@@ -1,5 +1,5 @@
 import { Card } from "../ui/Card"
-import { fetchAllNotes } from "../lib/data"
+import { fetchAllNotes } from "../../lib/data"
 function DisplayCards() {
     return <>
 

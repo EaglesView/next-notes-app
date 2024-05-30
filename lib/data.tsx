@@ -1,4 +1,4 @@
-import prisma from "@/app/lib/prisma"
+import prisma from "@/lib/prisma"
 import { GetServerSideProps } from "next";
 export const fetchAllNotes: GetServerSideProps = async ({ params }) => {
     const notes = await prisma.notes.findMany({
