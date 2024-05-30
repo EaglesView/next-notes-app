@@ -33,7 +33,7 @@ const options: NextAuthOptions = {
         })
     ],
     adapter: PrismaAdapter(prisma),
-    secret: process.env.SECRET,
+    secret: process.env.NEXT_PUBLIC_SECRET,
     session: {
         strategy: "jwt",
     },
