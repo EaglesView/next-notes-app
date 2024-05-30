@@ -24,7 +24,7 @@ export default function HomeScreen({ session, status }: HomeScreenProps) {
                 {(status === "authenticated" && session != null) ? (
 
                     <Link href="/dashboard" className={`${averiaSerif.className} text-2xl drop-shadow-md font-black p-2 bg-slate-800 text-slate-50 rounded-md`}>
-                        Welcome! Go to Dashboard
+                        Go to dashboard
                     </Link>
                 ) : (
                     <>
