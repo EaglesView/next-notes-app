@@ -1,6 +1,5 @@
 import { Sidebar } from "@/app/ui/SideBar";
-import { RoundPlusButton } from "@/components/buttons";
-
+import RoundPlusButton from "@/components/buttons"
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
