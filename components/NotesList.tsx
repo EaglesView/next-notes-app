@@ -1,12 +1,11 @@
-"use client";
 import React, { useState, useEffect } from 'react';
-import { RoundPlusButton } from './buttons';
+import RoundPlus from './buttons/RoundPlus';
 import NewNoteOverlay from './NewNoteOverlay';
 
 interface Note {
     id: string;
-    title: string;
-    content: string;
+    note_title: string;
+    note_content: string;
 }
 
 const NotesList: React.FC = () => {
@@ -17,8 +16,12 @@ const NotesList: React.FC = () => {
     useEffect(() => {
         const fetchNotes = async () => {
             try {
-                const response = await fetch('/api/notes?userId=your-user-id');
+                const response = await fetch('/api/dashboard/notes?authorID=your-user-id');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 const data = await response.json();
+                console.log('Fetched notes:', data); // Log for debugging
                 setNotes(data);
                 setLoading(false);
             } catch (error) {
@@ -30,16 +33,20 @@ const NotesList: React.FC = () => {
         fetchNotes();
     }, []);
 
-    const handleSaveNote = async (title: string, content: string) => {
+    const handleSaveNote = async (note_title: string, note_content: string) => {
         try {
-            const response = await fetch('/api/notes', {
+            const response = await fetch('/api/dashboard/notes', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ title, content, userId: 'your-user-id' }),
+                body: JSON.stringify({ note_title, note_content, authorID: 'your-user-id' }),
             });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             const newNote = await response.json();
+            console.log('Created note:', newNote); // Log for debugging
             setNotes([...notes, newNote]);
         } catch (error) {
             console.error('Error adding note:', error);
@@ -54,10 +61,10 @@ const NotesList: React.FC = () => {
         <div>
             <div className="notes-container">
                 {notes.map((note) => (
-                    <NoteCard key={note.id} title={note.title} content={note.content} />
+                    <NoteCard key={note.id} title={note.note_title} content={note.note_content} />
                 ))}
             </div>
-            <RoundPlusButton onClick={() => setShowOverlay(true)} />
+            <RoundPlus onClick={() => setShowOverlay(true)} />
             {showOverlay && (
                 <NewNoteOverlay
                     onClose={() => setShowOverlay(false)}
