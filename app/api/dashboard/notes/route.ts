@@ -51,3 +51,4 @@ async function handlePOST(req: NextApiRequest, res: NextApiResponse) {
         res.status(500).json({ error: 'Error creating note' });
     }
 }
+export { handleGET as GET, handlePOST as POST };
