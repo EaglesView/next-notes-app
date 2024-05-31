@@ -1,5 +1,6 @@
-import NextAuth from "next-auth/next";
-import options from "./options";
-secret: process.env.SECRET;
-const Handler = NextAuth(options);
-export { Handler as GET, Handler as POST }
+import NextAuth from 'next-auth';
+import options from './options';
+
+export const authHandler = NextAuth(options);
+
+export { authHandler as GET, authHandler as POST };

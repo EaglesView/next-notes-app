@@ -1,4 +1,3 @@
-// app/api/auth/[...nextauth]/options.ts
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import GitHubProvider from 'next-auth/providers/github';
