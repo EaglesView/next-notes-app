@@ -1,4 +1,5 @@
-=import { NextApiRequest, NextApiResponse } from 'next';
+"use client";
+import { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '../../../lib/prisma';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
