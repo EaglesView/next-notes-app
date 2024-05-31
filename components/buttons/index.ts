@@ -6,5 +6,5 @@ export default {
     Hamburger,
     RegButton,
     RoundPlusButton,
-    ButtonStatus
+    ButtonStatus,
 }

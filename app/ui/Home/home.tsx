@@ -5,7 +5,7 @@ import Link from "next/link";
 import { averiaSerif, inter } from '@/app/ui/fonts';
 import { Logo } from '@/app/ui/Logo'
 import { Session } from "next-auth";
-import { ButtonStatus } from "@/components/buttons";
+import ButtonStatus from "@/components/buttons/LoginButtons/login";
 interface HomeScreenProps {
     session: Session | null;
     status: "loading" | "authenticated" | "unauthenticated";
