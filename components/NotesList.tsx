@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 import RoundPlus from './buttons/RoundPlus';
 import NewNoteOverlay from './NewNoteOverlay';
