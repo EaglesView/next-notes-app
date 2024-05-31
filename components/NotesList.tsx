@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import RoundPlus from './buttons/RoundPlus';
+import { RoundPlusButton } from './buttons';
 import NewNoteOverlay from './NewNoteOverlay';
 
 interface Note {
@@ -57,7 +57,7 @@ const NotesList: React.FC = () => {
                     <NoteCard key={note.id} title={note.title} content={note.content} />
                 ))}
             </div>
-            <RoundPlus onClick={() => setShowOverlay(true)} />
+            <RoundPlusButton onClick={() => setShowOverlay(true)} />
             {showOverlay && (
                 <NewNoteOverlay
                     onClose={() => setShowOverlay(false)}
