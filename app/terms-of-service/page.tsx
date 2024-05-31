@@ -2,7 +2,7 @@ export default function TermsOfService() {
     return <>
         <h1>Terms of Service</h1>
 
-        <p>Please read these terms of service ("Terms") carefully before using NextNotes web application (the "Service") operated by NextNotes ("us", "we", or "our").</p>
+        <p>Please read these terms of service (&quot;Terms&quot;) carefully before using NextNotes web application (the &quot;Service&quot;) operated by NextNotes (&quot;us&quot;, &quot;we&quot;, or &quot;our&quot;).</p>
 
         <h2>1. Agreement to Terms</h2>
 
@@ -14,7 +14,7 @@ export default function TermsOfService() {
 
         <h2>3. Service Interruptions</h2>
 
-        <p>Our Service is experimental and provided on an "as is" and "as available" basis. We do not warrant that the Service will be uninterrupted, timely, secure, or error-free, or that defects will be corrected. You acknowledge and agree that the use of the Service may be unstable and could lead to potential failures or service interruptions.</p>
+        <p>Our Service is experimental and provided on an &quot;as is&quot; and &quot;as available&quot; basis. We do not warrant that the Service will be uninterrupted, timely, secure, or error-free, or that defects will be corrected. You acknowledge and agree that the use of the Service may be unstable and could lead to potential failures or service interruptions.</p>
 
         <h2>4. Changes to Terms</h2>
 
@@ -24,7 +24,7 @@ export default function TermsOfService() {
 
         <p>If you have any questions about these Terms, please contact us at:</p>
         <ul>
-            <li><strong>Email:</strong> jbouchardprod@gmail.com </li>
+            <li><strong>Email:</strong> jbouchardprod@gmail.com</li>
         </ul>
     </>
 }
