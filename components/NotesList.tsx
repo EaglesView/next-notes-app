@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import RoundPlusButton from '@/components/buttons';
+import RoundPlusButton from './buttons/RoundPlusBtn';
 import NewNoteOverlay from './NewNoteOverlay';
 
 interface Note {
