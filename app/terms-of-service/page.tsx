@@ -18,13 +18,14 @@ export default function TermsOfService() {
 
         <h2>4. Changes to Terms</h2>
 
-        <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.</p>
+        <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days&apos; notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.</p>
 
         <h2>5. Contact Us</h2>
 
         <p>If you have any questions about these Terms, please contact us at:</p>
         <ul>
             <li><strong>Email:</strong> jbouchardprod@gmail.com</li>
+            <li><strong>Address:</strong> [Your Contact Address]</li>
         </ul>
     </>
 }
