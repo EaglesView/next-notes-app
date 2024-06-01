@@ -1,14 +1,14 @@
 // src/app/api/dashboard/notes/route.ts
-import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { getServerSession } from 'next-auth/next';
 import authOptions from '../../auth/[...nextauth]/options';
 import prisma from '../../../../lib/prisma';
 
-export async function GET(req: NextRequest) {
-    const session = await getServerSession({ req }, authOptions);
+export async function GET(req: NextApiRequest, res: NextApiResponse) {
+    const session = await getServerSession(req, res, authOptions);
 
     if (!session) {
-        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        return res.status(401).json({ error: 'Unauthorized' });
     }
 
     const userID = session.user.id;
@@ -20,25 +20,25 @@ export async function GET(req: NextRequest) {
             },
         });
         console.log('Fetched notes:', notes);
-        return NextResponse.json(notes, { status: 200 });
+        return res.status(200).json(notes);
     } catch (error) {
         console.error('Error fetching notes:', error);
-        return NextResponse.json({ error: 'Error fetching notes' }, { status: 500 });
+        return res.status(500).json({ error: 'Error fetching notes' });
     }
 }
 
-export async function POST(req: NextRequest) {
-    const session = await getServerSession({ req }, authOptions);
+export async function POST(req: NextApiRequest, res: NextApiResponse) {
+    const session = await getServerSession(req, res, authOptions);
 
     if (!session) {
-        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        return res.status(401).json({ error: 'Unauthorized' });
     }
 
     const userID = session.user.id;
-    const { note_title, note_content } = await req.json();
+    const { note_title, note_content } = req.body;
 
     if (!note_title) {
-        return NextResponse.json({ error: 'note_title is required' }, { status: 400 });
+        return res.status(400).json({ error: 'note_title is required' });
     }
 
     try {
@@ -50,9 +50,9 @@ export async function POST(req: NextRequest) {
             },
         });
         console.log('Created note:', newNote);
-        return NextResponse.json(newNote, { status: 201 });
+        return res.status(201).json(newNote);
     } catch (error) {
         console.error('Error creating note:', error);
-        return NextResponse.json({ error: 'Error creating note' }, { status: 500 });
+        return res.status(500).json({ error: 'Error creating note' });
     }
 }
