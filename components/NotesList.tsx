@@ -1,7 +1,9 @@
 "use client";
+
 import React, { useState, useEffect } from 'react';
 import RoundPlusButton from './buttons/RoundPlusBtn';
 import NewNoteOverlay from './NewNoteOverlay';
+import { useSession } from 'next-auth/react';
 
 interface Note {
     id: string;
@@ -13,16 +15,22 @@ const NotesList: React.FC = () => {
     const [notes, setNotes] = useState<Note[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [showOverlay, setShowOverlay] = useState<boolean>(false);
+    const { data: session } = useSession();
 
     useEffect(() => {
         const fetchNotes = async () => {
+            if (!session) {
+                console.error('No session found');
+                setLoading(false);
+                return;
+            }
             try {
-                const response = await fetch('/api/dashboard/notes?authorID=your-user-id');
+                const response = await fetch('/api/dashboard/notes');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
-                console.log('Fetched notes:', data); // Log for debugging
+                console.log('Fetched notes:', data);
                 setNotes(data);
                 setLoading(false);
             } catch (error) {
@@ -32,7 +40,7 @@ const NotesList: React.FC = () => {
         };
 
         fetchNotes();
-    }, []);
+    }, [session]);
 
     const handleSaveNote = async (note_title: string, note_content: string) => {
         try {
@@ -41,13 +49,13 @@ const NotesList: React.FC = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ note_title, note_content, authorID: 'your-user-id' }),
+                body: JSON.stringify({ note_title, note_content }),
             });
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const newNote = await response.json();
-            console.log('Created note:', newNote); // Log for debugging
+            console.log('Created note:', newNote);
             setNotes([...notes, newNote]);
         } catch (error) {
             console.error('Error adding note:', error);
